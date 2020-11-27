@@ -93,4 +93,5 @@ func main() {
 		fmt.Println("Pop:", v)
 	}
 	fmt.Println("Size:", size)
+	traverse(queue)
 }
