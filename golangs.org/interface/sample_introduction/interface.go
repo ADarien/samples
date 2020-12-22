@@ -7,38 +7,38 @@ import (
 
 // talk
 var t interface {
-	talk() string
+	Talk() string
 }
 
 type martian struct{}
 
 // martian talk
-func (m martian) talk() string {
+func (m martian) Talk() string {
 	return "nack nack"
 }
 
 type laser int
 
 // laser talk
-func (l laser) talk() string {
+func (l laser) Talk() string {
 	return strings.Repeat("pew ", int(l))
 }
 
 // тот, кто говорит
 type talker interface {
-	talk() string
+	Talk() string
 }
 
 // выстрел с параметром talker
 func shout(t talker) {
-	louder := strings.ToUpper(t.talk())
+	louder := strings.ToUpper(t.Talk())
 	fmt.Println(louder)
 }
 
 type rover string
 
 // rover talk
-func (r rover) talk() string {
+func (r rover) Talk() string {
 	return string(r)
 }
 
@@ -49,10 +49,10 @@ type starship struct {
 
 func main() {
 	t = martian{}
-	fmt.Println(t.talk())
+	fmt.Println(t.Talk())
 
 	t = laser(3)
-	fmt.Println(t.talk())
+	fmt.Println(t.Talk())
 
 	shout(martian{})
 	shout(laser(2))
@@ -62,6 +62,6 @@ func main() {
 
 	//когда говорит starship, за него говорит laser
 	s := starship{laser(3)}
-	fmt.Println(s.talk())
+	fmt.Println(s.Talk())
 	shout(s)
 }
